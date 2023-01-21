@@ -76,11 +76,15 @@ function Footer() {
               <div className="m-[2px]">
                 <SiWhatsapp color="#54E676" size={15} />
               </div>
-              <div className="m-[2px]">+91 9369390970</div>
+              <a href="https://api.whatsapp.com/send/?phone=9369390970&text&type=phone_number&app_absent=0">
+                <div className="m-[2px]">+91 9369390970</div>
+              </a>
             </div>
-            <button className="btn btn-sm rounded-none  hover:bg-[#F9BF3A] font-bold text-[12px] mt-4   text-[#222222] p-2 bg-[#F9BF3A]">
-              CONTACT US
-            </button>
+            <a href="https://api.whatsapp.com/send/?phone=9369390970&text&type=phone_number&app_absent=0">
+              <button className="btn btn-sm rounded-none  hover:bg-[#F9BF3A] font-bold text-[12px] mt-4   text-[#222222] p-2 bg-[#F9BF3A]">
+                CONTACT US
+              </button>
+            </a>
           </div>
         </div>
         <div className="card ">
