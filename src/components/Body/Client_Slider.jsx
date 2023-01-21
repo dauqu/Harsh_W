@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import node from "../assets/images/node.svg";
@@ -26,8 +26,27 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper";
+import axios from "axios";
+import { API } from "../Constant/Constant";
+import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
 
 function Client_Slider() {
+  const [allreviews, setAllreviews] = useState([]);
+  const getreviews = async () => {
+    const res = await axios
+      .get(`${API}/review`)
+      .then((res) => {
+        // console.log(res.data);
+        setAllreviews(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getreviews();
+  }, []);
+
   return (
     <div>
       <div className="mt-16 w-[90%] m-auto">
@@ -40,11 +59,11 @@ function Client_Slider() {
               pagination={true}
               slidesPerView={3}
               className="mySwiper cursor-pointer"
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              modules={[Autoplay]}
+              // autoplay={{
+              //   delay: 2500,
+              //   disableOnInteraction: false,
+              // }}
+              // modules={[Autoplay]}
               breakpoints={{
                 320: {
                   slidesPerView: 1,
@@ -72,97 +91,52 @@ function Client_Slider() {
                 },
               }}
             >
-              <SwiperSlide>
-                <div className="w-[300px]">
-                  <div className=" text-[18px] py-2 italic text-[#A7A7A7] ">
-                    " Claritas est etiam processus dynamicus, qui sequitur
-                    mutationem consuetudium lectorum.Mirum est notare quam
-                    littera gothica, quam nunc putamus parum claram. "
-                  </div>
-                  <div className="py-2 font-bold text-black text-[20px]">
-                    Bushra Ahsani
-                  </div>
-                  <div className="text-[14px]">CEO, Home Limited</div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-[300px]">
-                  <div className=" text-[18px] py-2 italic text-[#A7A7A7] ">
-                    " Claritas est etiam processus dynamicus, qui sequitur
-                    mutationem consuetudium lectorum.Mirum est notare quam
-                    littera gothica, quam nunc putamus parum claram. "
-                  </div>
-                  <div className="py-2 font-bold text-black text-[20px]">
-                    Bushra Ahsani
-                  </div>
-                  <div className="text-[14px]">CEO, Home Limited</div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-[300px]">
-                  <div className=" text-[18px] py-2 italic text-[#A7A7A7] ">
-                    " Claritas est etiam processus dynamicus, qui sequitur
-                    mutationem consuetudium lectorum.Mirum est notare quam
-                    littera gothica, quam nunc putamus parum claram. "
-                  </div>
-                  <div className="py-2 font-bold text-black text-[20px]">
-                    Bushra Ahsani
-                  </div>
-                  <div className="text-[14px]">CEO, Home Limited</div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-[300px]">
-                  <div className=" text-[18px] py-2 italic text-[#A7A7A7] ">
-                    " Claritas est etiam processus dynamicus, qui sequitur
-                    mutationem consuetudium lectorum.Mirum est notare quam
-                    littera gothica, quam nunc putamus parum claram. "
-                  </div>
-                  <div className="py-2 font-bold text-black text-[20px]">
-                    Bushra Ahsani
-                  </div>
-                  <div className="text-[14px]">CEO, Home Limited</div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-[300px]">
-                  <div className=" text-[18px] py-2 italic text-[#A7A7A7] ">
-                    " Claritas est etiam processus dynamicus, qui sequitur
-                    mutationem consuetudium lectorum.Mirum est notare quam
-                    littera gothica, quam nunc putamus parum claram. "
-                  </div>
-                  <div className="py-2 font-bold text-black text-[20px]">
-                    Bushra Ahsani
-                  </div>
-                  <div className="text-[14px]">CEO, Home Limited</div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-[300px]">
-                  <div className=" text-[18px] py-2 italic text-[#A7A7A7] ">
-                    " Claritas est etiam processus dynamicus, qui sequitur
-                    mutationem consuetudium lectorum.Mirum est notare quam
-                    littera gothica, quam nunc putamus parum claram. "
-                  </div>
-                  <div className="py-2 font-bold text-black text-[20px]">
-                    Bushra Ahsani
-                  </div>
-                  <div className="text-[14px]">CEO, Home Limited</div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="w-[300px]">
-                  <div className=" text-[18px] py-2 italic text-[#A7A7A7] ">
-                    " Claritas est etiam processus dynamicus, qui sequitur
-                    mutationem consuetudium lectorum.Mirum est notare quam
-                    littera gothica, quam nunc putamus parum claram. "
-                  </div>
-                  <div className="py-2 font-bold text-black text-[20px]">
-                    Bushra Ahsani
-                  </div>
-                  <div className="text-[14px]">CEO, Home Limited</div>
-                </div>
-              </SwiperSlide>
+              {allreviews.map((item, key) => {
+                return (
+                  <SwiperSlide key={item._id}>
+                    <div className="w-[300px] md:m-0 m-auto">
+                      <div className=" text-[18px] h-[220px] py-2 italic text-[#A7A7A7] ">
+                        {item.review}
+                      </div>
+                      {item.rating === 1 ? (
+                        <div className="flex items-center text-[18px] h-[30px] py-2 italic text-[#A7A7A7] ">
+                          <AiTwotoneStar color="red" />
+                        </div>
+                      ) : item.rating === 2 ? (
+                        <div className="flex items-center text-[18px] h-[30px] py-2 italic text-[#A7A7A7] ">
+                          <AiTwotoneStar color="red" />
+                          <AiTwotoneStar color="red" />
+                        </div>
+                      ) : item.rating === 3 ? (
+                        <div className="flex items-center text-[18px] h-[30px] py-2 italic text-[#A7A7A7] ">
+                          <AiTwotoneStar color="red" />
+                          <AiTwotoneStar color="red" />
+                          <AiTwotoneStar color="red" />
+                        </div>
+                      ) : item.rating === 4 ? (
+                        <div className="flex items-center text-[18px] h-[30px] py-2 italic text-[#A7A7A7] ">
+                          <AiTwotoneStar color="red" />
+                          <AiTwotoneStar color="red" />
+                          <AiTwotoneStar color="red" />
+                          <AiTwotoneStar color="red" />
+                        </div>
+                      ) : item.rating === 5 ? (
+                        <div className="flex items-center text-[18px] h-[30px] py-2 italic text-[#A7A7A7] ">
+                          <AiTwotoneStar color="red" />
+                          <AiTwotoneStar color="red" />
+                          <AiTwotoneStar color="red" />
+                          <AiTwotoneStar color="red" />
+                          <AiTwotoneStar color="red" />
+                        </div>
+                      ) : null}
+
+                      <div className="py-2 h-[50px] font-bold text-black text-[20px]">
+                        {item.name}
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
         </div>

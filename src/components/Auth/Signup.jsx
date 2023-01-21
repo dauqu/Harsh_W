@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { API } from "../Constant/Constant";
 import { ToastContainer, toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -71,7 +72,13 @@ function Signup() {
 
   return (
     <div>
-      <div className="flex bg-[#f1f1f1]  items-center h-screen w-full">
+      <motion.div
+        initial={{ y: -10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -10, opacity: 0 }}
+        transition={{ duration: 0.9, stiffness: 500 }}
+        className="flex bg-[#f1f1f1]  items-center h-screen w-full"
+      >
         <div className="w-full bg-white md:mt-0 mt-12 rounded shadow-lg p-8 m-4 md:max-w-[600px] md:mx-auto">
           <span className="block w-full text-xl uppercase font-bold mb-4">
             Signup
@@ -196,7 +203,7 @@ function Signup() {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
       {successsignup ? (
         <ToastContainer
           position="top-right"

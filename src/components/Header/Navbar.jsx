@@ -62,8 +62,15 @@ function Navbar() {
           {toggle ? <RxCross1 size={28} /> : <AiOutlineMenu size={28} />}
         </div>
         <ul className="links">
-          <li>Home</li>
-          <li>About</li>
+          <Link to="/">
+            <li>Home</li>
+          </Link>
+          <Link to="/website_price_cal">
+            <li>Website</li>
+          </Link>
+          <Link to="/app_dev_cal">
+            <li>Application</li>
+          </Link>
           {checklogin === false ? (
             <Link to="/login">
               <li>Login</li>

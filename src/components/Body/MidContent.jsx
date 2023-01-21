@@ -6,8 +6,8 @@ function MidContent() {
   return (
     <>
       <div className="  md:w-[85%] w-[90%]   justify-center md:mt-24 m-auto p-4">
-        <div className="md:w-[50%] mt-8 w-full m-auto">
-          <div className="md:w-[70%] w-full md:text-center m-auto font-bold md:text-[35px] text-[20px] text-black">
+        <div className="md:w-[70%] mt-8 w-full m-auto">
+          <div className="md:w-[70%]  w-full md:text-center m-auto font-bold md:text-[35px] text-[20px] text-black">
             Use sensitive data without sacrificing privacy
           </div>
           <div className="md:mt-8 mt-4 font-semibold md:text-[20px] text-[16px] text-[#999] text-center">

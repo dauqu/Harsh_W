@@ -1,13 +1,97 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RiMailSendFill } from "react-icons/ri";
 import { SiFreelancer, SiWhatsapp } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaFacebookSquare, FaTwitterSquare } from "react-icons/fa";
 import { GrLinkedin, GrMail } from "react-icons/gr";
-import { BsInstagram } from "react-icons/bs";
+import { BsChatLeftText, BsInstagram } from "react-icons/bs";
 import "../assets/css/footer.css";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { API } from "../Constant/Constant";
+import { AiOutlineStar } from "react-icons/ai";
 function Footer() {
+  const [checklogin, setChecklogin] = useState(""); // to chech if user is logged in or not
+  const getuser = () => {
+    axios
+      .get(`${API}/user_login/check_valid_token`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        // console.log(res);
+        setChecklogin(res.data);
+        // setIsloggedin(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        // setIsloggedin(false);
+      });
+  };
+
+  useEffect(() => {
+    getuser();
+  }, []);
+
+  // to get profile data of user if logged in
+  const [profiledata, setProfiledata] = useState([]);
+  const getprofiledata = () => {
+    axios
+      .get(`${API}/user_profile`)
+      .then((res) => {
+        // console.log(res.data.user);
+        setProfiledata(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getprofiledata();
+  }, []);
+
+  // code to submit review to database
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(0);
+  const handlereviewSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(`${API}/review`, {
+        name: profiledata.name,
+        email: profiledata.email,
+        review: review,
+        rating: rating,
+      })
+      .then((res) => {
+        console.log(res);
+        setReviewtoast(true);
+        notify();
+        setTimeout(() => {
+          window.location.reload();
+        }, [3000]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const [reviewtoast, setReviewtoast] = useState(false);
+  const notify = () => {
+    toast.success("Thanks! for your review..", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
   return (
     <div className="bg-[#222222]">
       <div className="mainfooter">
@@ -88,32 +172,83 @@ function Footer() {
           </div>
         </div>
         <div className="card ">
-          <div className="font-semibold text-[23px] m-4 text-white">
-            Newsletter
-          </div>
-          <div className="m-4">
-            <div>
-              <div className="text-[#9FA4AB] text-[14px]  mt-4 mb-4 flex items-center justify-evenly   border border-white  text-justify">
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  className="bg-[#222222] p-4 w-auto  text-[15px] outline-none"
-                  placeholder="Enter Email here"
-                />
+          <div className="font-semibold text-[23px] m-4 text-white">Rating</div>
+          {checklogin === true ? (
+            <div className="m-4">
+              <form method="post">
                 <div>
-                  <RiMailSendFill size={25} />
+                  <div className="text-[#9FA4AB] text-[14px]  mb-2 flex items-center justify-evenly   border border-white  text-justify">
+                    <input
+                      type="text"
+                      name={review}
+                      onChange={(e) => setReview(e.target.value)}
+                      className="bg-[#222222] p-4 w-auto  text-[15px] outline-none"
+                      placeholder="Write your review.."
+                      required
+                    />
+                    <div>
+                      <BsChatLeftText size={25} className="mr-2" />
+                    </div>
+                  </div>
+
+                  <div className=" mt-4">
+                    <div className="flex items-center justify-between">
+                      <label for="cars">Choose Stars:</label>
+
+                      <select
+                        name={rating}
+                        onChange={(e) => setRating(e.target.value)}
+                        id="cars"
+                        className="bg-[#100f0f] p-2 rounded-sm"
+                      >
+                        <option>Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handlereviewSubmit}
+                  className="btn btn-sm rounded-none  hover:bg-[#F9BF3A] font-bold text-[12px] mt-4   text-[#222222] p-2 bg-[#F9BF3A]"
+                >
+                  Rate US
+                </button>
+              </form>
+            </div>
+          ) : (
+            <div className="m-4">
+              <div>
+                <div className="text-[#9FA4AB] text-[14px]  mb-2 flex items-center justify-evenly   border border-white  text-justify">
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    className="bg-[#222222] p-4 w-auto  text-[15px] outline-none"
+                    placeholder="Write your review.."
+                    disabled
+                  />
+                  <div>
+                    <BsChatLeftText size={25} className="mr-2" />
+                  </div>
+                </div>
+                <div>
+                  Please login your account to rate us. This will help us to
+                  improve our services.
                 </div>
               </div>
-              <div>
-                Drop your email to get the latest news and updates from us.
-              </div>
-            </div>
 
-            <button className="btn btn-sm rounded-none  hover:bg-[#F9BF3A] font-bold text-[12px] mt-8   text-[#222222] p-2 bg-[#F9BF3A]">
-              CONTACT US
-            </button>
-          </div>
+              <Link to="/login">
+                <button className="btn btn-sm rounded-none  hover:bg-[#F9BF3A] font-bold text-[12px] mt-4   text-[#222222] p-2 bg-[#F9BF3A]">
+                  Login
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
       <div className="copyrightdiv ">
@@ -144,6 +279,22 @@ function Footer() {
           </a>
         </div>
       </div>
+      {reviewtoast ? (
+        <>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+        </>
+      ) : null}
     </div>
   );
 }

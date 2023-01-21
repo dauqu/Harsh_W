@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,7 +68,11 @@ function Login() {
 
   return (
     <div>
-      <div className="flex bg-[#f1f1f1] items-center h-screen w-full">
+      <motion.div
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -10, opacity: 0 }}
+          transition={{ duration: 0.9, stiffness: 500 }} className="flex bg-[#f1f1f1] items-center h-screen w-full">
         <div className="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
           <span className="block w-full text-xl uppercase font-bold mb-4">
             Login
@@ -118,7 +123,7 @@ function Login() {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
       {successlogin ? (
         <ToastContainer
           position="top-right"
