@@ -7,10 +7,14 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import "../assets/css/cardSlider.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
-
+import planning from "../assets/images/planning.gif";
+import vectorgif from "../assets/images/vectorgif.gif";
+import vector3 from "../assets/images/coding2.webp";
 // import required modules
 import { EffectCards } from "swiper";
 import bg5 from "../assets/images/bg5.jpg";
+import reactjs from "../assets/images/reactjss.jfif";
+import reactanimation from "../assets/images/reactj.gif";
 import "../assets/css/ourproject.css";
 function OurProjects() {
   return (
@@ -19,13 +23,13 @@ function OurProjects() {
         <div className="text-center text-black font-bold md:text-[35px] text-[25px]">
           What We Do
         </div>
-        <div className="p-6 lg:p-24 flex flex-wrap items-center  justify-evenly">
-          <div className="w-[350px] md:m-4 m-auto md:pt-0 pt-12">
-            <div>
-              <img src={bg5} alt="" srcset="" />
+        <div className="p-6 lg:p-24 flex flex-wrap  items-center  justify-evenly">
+          <div className="w-[350px]  md:m-4 m-auto md:pt-0 pt-12">
+            <div className="w-[350px] h-[262px]">
+              <img src={planning} alt="" srcset="" className="w-full h-full" />
             </div>
             <div className="mt-4 mb-4 font-bold text-[22px]">
-              Best Renovation
+              Structure Planning
             </div>
             <div className="leading-6 text-justify">
               Duis autem vel eum iriure dolor in hendrerit in vulpu tate velit
@@ -33,11 +37,11 @@ function OurProjects() {
             </div>
           </div>
           <div className="w-[350px] md:m-4 m-auto md:pt-0 pt-12">
-            <div>
-              <img src={bg5} alt="" srcset="" />
+            <div className="w-[350px] h-[262px]">
+              <img src={vectorgif} alt="" srcset="" className="w-full h-full" />
             </div>
             <div className="mt-4 mb-4 font-bold text-[22px]">
-              Best Renovation
+              Implementing UI
             </div>
             <div className="leading-6 text-justify">
               Duis autem vel eum iriure dolor in hendrerit in vulpu tate velit
@@ -45,12 +49,10 @@ function OurProjects() {
             </div>
           </div>
           <div className="w-[350px] md:m-4 m-auto md:pt-0 pt-12">
-            <div>
-              <img src={bg5} alt="" srcset="" />
+            <div className="w-[350px] h-[262px]">
+              <img src={vector3} alt="" srcset="" className="w-full h-full " />
             </div>
-            <div className="mt-4 mb-4 font-bold text-[22px]">
-              Best Renovation
-            </div>
+            <div className="mt-4 mb-4 font-bold text-[22px]">Quality Work</div>
             <div className="leading-6 text-justify">
               Duis autem vel eum iriure dolor in hendrerit in vulpu tate velit
               esse molestie consequat.
@@ -60,19 +62,17 @@ function OurProjects() {
       </div>
 
       <div className="bg-[#FAFAFA]">
-      <div className="text-center text-black font-bold md:text-[35px] text-[25px] md:py-6 py-8 md:pb-0  ">
+        <div className="text-center text-black font-bold md:text-[35px] text-[25px] md:py-6 py-8 md:pb-0  ">
           Testimonials
-            </div>
+        </div>
         <div className="md:px-24 px-6 md:py-12 py-6 ">
-       
           <div className="ourpoject">
-         
             <div className="leftdiv    m-auto">
               <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{
-                  delay: 2500,
+                  delay: 5000,
                   disableOnInteraction: false,
                 }}
                 pagination={{
@@ -83,21 +83,17 @@ function OurProjects() {
                 className="mySwiper"
               >
                 <SwiperSlide>
-                  {" "}
+                  <img src={reactjs} alt="" srcset="" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src={reactanimation} alt="" srcset="" />
+                </SwiperSlide>
+                {/* <SwiperSlide>
                   <img src={bg5} alt="" srcset="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  {" "}
                   <img src={bg5} alt="" srcset="" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  {" "}
-                  <img src={bg5} alt="" srcset="" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  {" "}
-                  <img src={bg5} alt="" srcset="" />
-                </SwiperSlide>
+                </SwiperSlide> */}
               </Swiper>
             </div>
             <div className="rightdiv   m-auto text-justify">

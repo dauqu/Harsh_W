@@ -166,7 +166,7 @@ function Client_Slider() {
             </Swiper>
           </div>
         </div>
-        <div className="md:px-24  ">
+        <div className="md:px-24 md:mt-24 mt-4 ">
           <div>
             <Swiper
               pagination={true}

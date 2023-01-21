@@ -1,8 +1,9 @@
 import React from "react";
 import { RiMailSendFill } from "react-icons/ri";
-import { SiFreelancer } from "react-icons/si";
+import { SiFreelancer, SiWhatsapp } from "react-icons/si";
+import { HiOutlineMail } from "react-icons/hi";
 import { FaFacebookSquare, FaTwitterSquare } from "react-icons/fa";
-import { GrLinkedin } from "react-icons/gr";
+import { GrLinkedin, GrMail } from "react-icons/gr";
 import { BsInstagram } from "react-icons/bs";
 import "../assets/css/footer.css";
 import { Link } from "react-router-dom";
@@ -40,10 +41,12 @@ function Footer() {
           <div className="font-semibold text-[23px] m-4 text-white">
             Important Links
           </div>
-          <div className="text-[#9FA4AB] text-[15px]  m-4 text-justify border-b-2 border-[#4C4C4C] hover:border-[#F9BF3A] hover:text-white pb-2 cursor-pointer">
-            Calculate App Price
-          </div>
-          <Link to="website_price_cal">
+          <Link to="/app_dev_cal">
+            <div className="text-[#9FA4AB] text-[15px]  m-4 text-justify border-b-2 border-[#4C4C4C] hover:border-[#F9BF3A] hover:text-white pb-2 cursor-pointer">
+              Calculate App Price
+            </div>
+          </Link>
+          <Link to="/website_price_cal">
             <div className="text-[#9FA4AB] text-[15px]  m-4 text-justify border-b-2 border-[#4C4C4C] hover:border-[#F9BF3A] hover:text-white  pb-2 cursor-pointer">
               Calculate Website Price
             </div>{" "}
@@ -59,10 +62,21 @@ function Footer() {
             Contact Us
           </div>
           <div className="m-4">
-            <div className="text-[#9FA4AB] text-[14px]   text-justify">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
-              beatae ad excepturi tenetur tempore at animi ratione voluptas nisi
-              fugit.
+            <div className="text-[#9FA4AB] text-[16px]   text-justify">
+              We are here to help you. Please contact us if you have any
+              questions.
+            </div>
+            <div className="flex items-center">
+              <div className="m-[2px]">
+                <GrMail color="#F28422" size={15} />
+              </div>
+              <div className="m-[2px] ">info@harshaweb.com</div>
+            </div>
+            <div className="flex items-center">
+              <div className="m-[2px]">
+                <SiWhatsapp color="#54E676" size={15} />
+              </div>
+              <div className="m-[2px]">+91 9369390970</div>
             </div>
             <button className="btn btn-sm rounded-none  hover:bg-[#F9BF3A] font-bold text-[12px] mt-4   text-[#222222] p-2 bg-[#F9BF3A]">
               CONTACT US
@@ -74,18 +88,24 @@ function Footer() {
             Newsletter
           </div>
           <div className="m-4">
-            <div className="text-[#9FA4AB] text-[14px]  mt-4 mb-4 flex items-center justify-evenly   border border-white  text-justify">
-              <input
-                type="text"
-                name=""
-                id=""
-                className="bg-[#222222] p-4 w-auto  text-[15px] outline-none"
-                placeholder="Enter Email here"
-              />
+            <div>
+              <div className="text-[#9FA4AB] text-[14px]  mt-4 mb-4 flex items-center justify-evenly   border border-white  text-justify">
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  className="bg-[#222222] p-4 w-auto  text-[15px] outline-none"
+                  placeholder="Enter Email here"
+                />
+                <div>
+                  <RiMailSendFill size={25} />
+                </div>
+              </div>
               <div>
-                <RiMailSendFill size={25} />
+                Drop your email to get the latest news and updates from us.
               </div>
             </div>
+
             <button className="btn btn-sm rounded-none  hover:bg-[#F9BF3A] font-bold text-[12px] mt-8   text-[#222222] p-2 bg-[#F9BF3A]">
               CONTACT US
             </button>
@@ -94,7 +114,7 @@ function Footer() {
       </div>
       <div className="copyrightdiv ">
         <div className="copyrighttext text-[#848484]  ">
-        2021 &copy; Copyright, Harshaweb. All rights reserved.
+          2021 &copy; Copyright, Harshaweb. All rights reserved.
         </div>
         <div className="socialdiv  ">
           <a href="https://www.instagram.com/harshaweb8576/">
