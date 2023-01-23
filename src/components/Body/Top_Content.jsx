@@ -12,7 +12,14 @@ function Top_Content() {
           transition={{ duration: 2 }}
           className="md:mt-24 mt-24 text-[white] font-bold text-center  md:text-[30px] text-[20px] "
         >
-          Focus on solving bigger problems
+          <div className="flex items-center justify-center h-[40px] overflow-hidden leading-[40px]">
+            <div>Focusing on</div> &nbsp;
+            <div className="relative top-[40px] animate-text">
+              <div className="text-[#d63ff1c8]">Interacitve Website 💻</div>
+              <div className="text-[#efa423]">High Security / SMTP 🔐</div>
+              <div className="text-[#3A7FF1]">Creative Application 📱</div>
+            </div>
+          </div>
         </motion.div>
         <div className="w-full md:mt-2 mt-4 text-left items-center">
           <img src={bgproblem} alt="" className="w-full m-auto " />
