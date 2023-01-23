@@ -5,7 +5,7 @@ import code from "../assets/images/code.png";
 function MidContent() {
   return (
     <>
-      <div className="  md:w-[85%] w-[90%]   justify-center md:mt-24 m-auto p-4">
+      <div className="  md:w-[85%] w-full   justify-center md:mt-24 m-auto p-4">
         <div className="md:w-[70%] mt-8 w-full m-auto">
           <div className="md:w-[70%]  w-full md:text-center m-auto font-bold md:text-[35px] text-[20px] text-black">
             Use sensitive data without sacrificing privacy
@@ -64,7 +64,7 @@ function MidContent() {
             We have more than{" "}
             <span className="font-bold text-black">
               {" "}
-              20 years of experiences{" "}
+          6 years of experiences{" "}
             </span>
             in Making Products
           </div>
