@@ -12,13 +12,18 @@ function Top_Content() {
           transition={{ duration: 2 }}
           className="md:mt-24 mt-24 text-[white] font-bold text-center  md:text-[30px] text-[20px] "
         >
-          <div className="flex items-center justify-center h-[40px] overflow-hidden leading-[40px]">
-            <div>Focusing on</div> &nbsp;
-            <div className="relative top-[40px] animate-text">
-              <div className="text-[#d63ff1c8]">Interacitve Website 💻</div>
-              <div className="text-[#efa423]">High Security / SMTP 🔐</div>
-              <div className="text-[#3A7FF1]">Creative Application 📱</div>
+          <div className="flex flex-col sm:flex-row items-center justify-center sm:h-[40px] h-[80px]  leading-[40px]">
+            <div className="h-[40px] leading-[40px] mr-[1px]">Focusing on</div>
+            <div className="overflow-hidden min-h-[40px] max-h-[40px] flex items-center leading-[40px]">
+              <div className="relative top-[40px] animate-text h-[120px]">
+                <div className="text-[#d63ff1c8]">Interactive Website 💻</div>
+                <div className="text-[#efa423] ml-2">High Security / SMTP 🔐</div>
+                <div className="text-[#3A7FF1]">Creative Application 📱</div>
+              </div>
             </div>
+            {/* <div className="overflow-hidden min-h-[40px] sm:hidden">
+              1
+            </div> */}
           </div>
         </motion.div>
         <div className="w-full md:mt-2 mt-4 text-left items-center">
