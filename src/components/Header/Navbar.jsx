@@ -76,7 +76,7 @@ function Navbar() {
               <li>Login</li>
             </Link>
           ) : (
-            <Link>
+            <Link to="/profilepage">
               <li>Profile</li>
             </Link>
           )}

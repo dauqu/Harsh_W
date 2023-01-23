@@ -15,6 +15,9 @@ import { API } from "../Constant/Constant";
 import { AiOutlineStar } from "react-icons/ai";
 function Footer() {
   const [checklogin, setChecklogin] = useState(""); // to chech if user is logged in or not
+  const [reviewtoast, setReviewtoast] = useState(false); // to show toast message after submitting review
+  const [reviewErr, setReviewErr] = useState(false); // to show error message if review is not submitted
+
   const getuser = () => {
     axios
       .get(`${API}/user_login/check_valid_token`, {
@@ -76,10 +79,11 @@ function Footer() {
       })
       .catch((err) => {
         console.log(err);
+        setReviewErr(true);
+        notifyErr();
       });
   };
 
-  const [reviewtoast, setReviewtoast] = useState(false);
   const notify = () => {
     toast.success("Thanks! for your review..", {
       position: "bottom-right",
@@ -92,6 +96,20 @@ function Footer() {
       theme: "dark",
     });
   };
+
+  const notifyErr = () => {
+    toast.error("Please Enter Review..", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   return (
     <div className="bg-[#222222]">
       <div className="mainfooter">
@@ -154,7 +172,9 @@ function Footer() {
               <div className="m-[2px]">
                 <GrMail color="#F28422" size={15} />
               </div>
-              <div className="m-[2px] ">info@harshaweb.com</div>
+              <a href="mailto:info@harshaweb.com">
+                <div className="m-[2px] ">info@harshaweb.com</div>
+              </a>
             </div>
             <div className="flex items-center">
               <div className="m-[2px]">
@@ -280,6 +300,22 @@ function Footer() {
         </div>
       </div>
       {reviewtoast ? (
+        <>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+        </>
+      ) : null}
+      {reviewErr ? (
         <>
           <ToastContainer
             position="bottom-right"
